@@ -6,9 +6,8 @@ import "@arco-themes/react-easy-email-pro/css/arco.css";
 import data from "./template.json";
 import { Layout } from "@arco-design/web-react";
 import React from "react";
-import { ElementType, t } from "easy-email-pro-core";
+import { ElementType, EditorCore, t } from "easy-email-pro-core";
 import { EditorHeader } from "./EditorHeader";
-
 const categories: ThemeConfigProps["categories"] = [
   {
     get label() {
@@ -211,6 +210,21 @@ export function EmailEditor() {
 
   const onSubmit = async (values: EmailTemplate) => {
     console.log(values);
+    // Convert the content to MJML
+    const pageData = values.content as EmailTemplate["content"];
+    
+     // mjmlSkeleton & htmlSkeleton can be cached
+    const mjmlSkeleton = EditorCore.toMJML({
+      element: pageData,
+      mode: "production",
+    });
+
+    //#region [Server side rendering]
+    // const htmlSkeleton = mjml(mjmlSkeleton).html;
+    //  const finalHtml = PluginManager.renderWithData(htmlSkeleton, {});
+    //#endregion
+
+    console.log(mjmlSkeleton);
   };
 
   const config = Retro.useCreateConfig({
@@ -239,3 +253,4 @@ export function EmailEditor() {
     </EmailEditorProvider>
   );
 }
+
