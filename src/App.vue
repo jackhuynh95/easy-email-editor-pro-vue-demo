@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {  onMounted } from 'vue'
-import { mountEditor } from './components/EmailEditor'
+import { mountEditor } from '../build'
+import '../build/dist/style.css'
 
 onMounted(()=>{
   mountEditor('editor-root')
