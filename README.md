@@ -21,6 +21,11 @@ Check out the live demo here https://demo.easyemail.pro/full
 
 pnpm install
 
+# generates the following bundles: ESM (.js) and IIFE (.iife.js). 
+# The name of bundle is automatically taken from package.json name property
+pnpm build
+
+# starts dev server
 pnpm dev
 
 ```
