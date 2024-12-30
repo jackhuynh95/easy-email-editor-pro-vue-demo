@@ -2,10 +2,25 @@
   "name": "easy-email-pro-vue-demo",
   "private": true,
   "version": "0.0.0",
+  "files":["dist"],
+  "main":"./dist/easy-email-pro-vue-demo.umd.js",
+  "module":"./dist/easy-email-pro-vue-demo.es.js",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/easy-email-pro-vue-demo.js"
+    },
+    "./dist/index.css": {
+      "import": "./dist/style.css"
+    },
+    "./dist/": {
+      "import": "./dist/"
+    }
+  },
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "rimraf build && tsc && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts && copyfiles ./package.json build",
     "update": "pnpm add easy-email-pro-core@latest easy-email-pro-editor@latest easy-email-pro-kit@latest easy-email-pro-theme@latest easy-email-pro-localization@latest easy-email-pro-asset-manager@latest easy-email-pro-plugins@latest",
     "preview": "vite preview"
   },
@@ -26,13 +41,16 @@
     "react-dom": "^18.2.0",
     "slate": "^0.102.0",
     "slate-history": "^0.100.0",
-    "slate-react": "^0.102.0",
-    "vue": "^3.4.21"
+    "slate-react": "^0.102.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
-    "vue-tsc": "^2.0.6"
+    "vue": "^3.4.21",
+    "vue-tsc": "^2.0.6",
+    "copyfiles": "^2.4.1",
+    "dts-bundle-generator": "^9.5.1",
+    "rimraf": "^6.0.1"
   }
 }

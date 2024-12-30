@@ -245,7 +245,8 @@ export function EmailEditor() {
 
   return (
     <EmailEditorProvider {...config}>
-      <EditorHeader />
+      {/* Custom More Details */}
+      {/* <EditorHeader /> */}
 
       <Layout.Content>
         <Retro.Layout></Retro.Layout>
